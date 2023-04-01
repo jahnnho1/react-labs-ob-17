@@ -1,0 +1,39 @@
+@import "./global.scss";
+
+.mobile-menu {
+  position: absolute;
+  padding: 0 0 24px;
+  top: 61px;
+  background: $--white;
+  /* padding-bottom: 15px; */
+  padding-right: 25px;
+  width: 100%;
+  z-index: 100;
+  left: 0px;
+}
+.mobile-menu a {
+  text-decoration: none;
+  color: $--black;
+  font-weight: bold;
+  /* margin-bottom: 24px; */
+}
+.mobile-menu ul {
+  padding: 0;
+  margin: 24px 0 0;
+  list-style: none;
+  padding-left: 20px
+}
+.mobile-menu ul:nth-child(1) {
+  border-bottom: 1px solid $--very-light-pink;
+}
+.mobile-menu ul li {
+  margin-bottom: 24px;
+}
+.email {
+  font-size: $--sm;
+  font-weight: 300 !important;
+}
+.sign-out {
+  font-size: $--sm;
+  color: $--hospital-green !important;
+}

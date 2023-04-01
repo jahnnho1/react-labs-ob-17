@@ -1,8 +1,8 @@
 import React from "react";
 import { RouterProvider} from "react-router-dom";
-import { router } from "../router/index";
-import Layout from "../containers/Layout";
-import "../styles/global.scss";
+import { router } from "./router/index";
+import Layout from "./containers/Layout";
+import "./styles/global.scss";
 
 
 

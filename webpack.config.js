@@ -11,6 +11,14 @@ module.exports = {
   },
   resolve: {
     extensions: [".js", ".jsx"],
+    alias: {
+      "@components": path.resolve(__dirname, "src/components/"),
+      "@containers": path.resolve(__dirname, "src/containers/"),
+      "@pages": path.resolve(__dirname, "src/pages/"),
+      "@styles": path.resolve(__dirname, "styles/"),
+      "@icons": path.resolve(__dirname, "src/assets/icons/"),
+      "@logos": path.resolve(__dirname, "src/assets/logos/"),
+    },
   },
   module: {
     rules: [
@@ -22,15 +30,15 @@ module.exports = {
       { test: /\.html$/, use: [{ loader: "html-loader" }] },
       {
         test: /\.s[ac]ss$/i,
-        use: [ "style-loader", "css-loader", "sass-loader" ],
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
         test: /\.(png|jpg|svg|jpeg|webp)$/,
-        type: 'asset/resource',
+        type: "asset/resource",
         generator: {
-           filename: 'assets/pictures/[hash][ext]',
-        }
-     }
+          filename: "assets/pictures/[hash][ext]",
+        },
+      },
     ],
   },
   plugins: [
@@ -39,12 +47,11 @@ module.exports = {
       filename: "./index.html",
     }),
     new MiniCssExtractPlugin({
-        filename: "[name].css",
+      filename: "[name].css",
     }),
   ],
   devServer: {
-    static: 
-    {
+    static: {
       directory: path.join(__dirname, "dist"),
       watch: true,
     },

@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/createNewAccount.scss";
+import "../styles/createNewPassword.scss";
 const logo_yard_sale = require("../assets/logos/logo_yard_sale.svg");
 
 const CreateNewAccount = () => {
