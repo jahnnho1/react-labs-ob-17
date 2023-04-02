@@ -1,56 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import ProductDetailView from "./ProductDetailView";
+import useGetProducts from "../hooks/useGetProducts";
+import AppContext from "../context/AppContext";
 import "../styles/products.scss";
 const bt_add_cart = require("../assets/icons/bt_add_to_cart.svg");
-
 const API = "https://api.escuelajs.co/api/v1/products?limit=20&offset=50";
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
+  const { addToCart } = useContext(AppContext);
   const [productView, setProductView] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
-
-
-  useEffect(async () => {
-    await fetch(API)
-      .then((response) => response.json())
-      .then((data) => console.log(data) || setProducts(data))
-      .catch((error) => console.log(error));
-  }, []);
+  const products = useGetProducts(API);
 
   const handleCartAdd = (product) => {
-    const existingProduct = cart.find((item) => item.id === product.id);
-    if (existingProduct) {
-      setCart(
-        cart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        )
-      );
-    } else {
-      const newProduct = {
-        id: product.id,
-        title: product.title,
-        quantity: 1,
-        price: product.price,
-      };
-      setCart([...cart, newProduct]);
-    }
+    addToCart(product);    
   };
 
   const handleProductView = (product) => {
-    setSelectedProduct(product); // establecer el producto seleccionado
+    setSelectedProduct(product); 
     setProductView(true);
   };
 
   const handleCloseProductView = () => {
-    setSelectedProduct(null); // eliminar el producto seleccionado
+    setSelectedProduct(null);
     setProductView(false);
   };
 
-  console.log(cart);
+
 
   return (
     <>

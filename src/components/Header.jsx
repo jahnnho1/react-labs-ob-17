@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../styles/header.scss";
 import iconMenu from "../assets/icons/icon_menu.svg";
 import logoYard from "../assets/logos/logo_yard_sale.svg";
@@ -6,11 +6,14 @@ import iconShoppingCart from "../assets/icons/icon_shopping_cart.svg";
 import Menu from "./Menu";
 import CartView from "./CartView";
 import MobileMenu from "./mobileMenu";
+import AppContext from "../context/AppContext";
 
 const Header = () => {
   const [menuActive, setMenuActive] = React.useState(false);
   const [cartViewActive, setCartViewActive] = React.useState(false);
   const [mobileMenuActive, setMobileMenuActive] = React.useState(false);
+  const { state } = useContext(AppContext);
+  const cart = state.cart;
 
   const handleMenu = () => {
     setMenuActive(!menuActive);
@@ -29,7 +32,12 @@ const Header = () => {
 
   return (
     <nav>
-      <img src={iconMenu} alt="menu" className="menu"  onClick={() => handleMobileMenu()} />
+      <img
+        src={iconMenu}
+        alt="menu"
+        className="menu"
+        onClick={() => handleMobileMenu()}
+      />
       <div className="navbar-left">
         <img src={logoYard} alt="logo" className="logo" />
         <ul>
@@ -60,7 +68,7 @@ const Header = () => {
           </li>
           <li className="navbar-shopping-cart" onClick={() => handleCartView()}>
             <img src={iconShoppingCart} alt="shopping cart" />
-            <div>2</div>
+            <div>{cart.length}</div>
           </li>
         </ul>
       </div>
